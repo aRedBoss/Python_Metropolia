@@ -1,3 +1,5 @@
+from random import randint
+
 class Car:
     current_speed = 0
     distance_traveled = 0
@@ -14,12 +16,22 @@ class Car:
         distance = self.current_speed * hours
         self.distance_traveled += distance
     def info(self):
-        print(self.distance_traveled)
-car_1 = Car("ABC-123", 160)
+        return f"Car {self.license_plate}: Distance traveled = {self.distance_traveled} km"
 
-car_1.accelerate(30)
-car_1.accelerate(50)
-car_1.accelerate(70)
-car_1.accelerate(-80)
-car_1.drive(1.5)
-car_1.info()
+cars = [Car(f"ABC-{i}", randint(100, 200)) for i in range(1, 11)]
+while True:
+    for car in cars:
+        car.accelerate(randint(-10, 15))
+        car.drive(1)
+        
+    if car.distance_traveled >= 10000:
+        break
+    else:
+        continue
+    break
+
+print("\nFinal status of all cars: \n")
+
+for car in cars:
+    print(car.info())
+
